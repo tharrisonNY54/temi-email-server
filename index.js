@@ -7,10 +7,12 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/health', (req, res) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
   console.log(`[${new Date().toISOString()}] 🔥 /health ping received from ${req.ip}`);
   res.sendStatus(200);
 });
 app.head('/health', (req, res) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
   console.log(`[${new Date().toISOString()}] 🔥 HEAD /health ping received from ${req.ip}`);
   res.sendStatus(200);
 });
