@@ -6,8 +6,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/health', (req, res) => res.sendStatus(200));
-app.head('/health', (req, res) => res.sendStatus(200));
+app.get('/health', (req, res) => {
+  console.log(`[${new Date().toISOString()}] 🔥 /health ping received from ${req.ip}`);
+  res.sendStatus(200);
+});
+app.head('/health', (req, res) => {
+  console.log(`[${new Date().toISOString()}] 🔥 HEAD /health ping received from ${req.ip}`);
+  res.sendStatus(200);
+});
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
